@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawsomeLearn | Modern Books & Learning Resources</title>
+    
+    <!-- Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Payhip Integration Script for Direct On-Site Downloads & Payments -->
+    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent-amazon: #ff9900;
+            --accent-etsy: #f1641e;
+            --accent-download: #10b981;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --radius-lg: 16px;
+            --radius-btn: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hero Banner Section */
+        .banner-wrapper {
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            padding: 20px 0 0 0;
+            text-align: center;
+        }
+
+        .banner-wrapper img {
+            max-width: 1000px;
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            box-shadow: var(--shadow-md);
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        header.site-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header.site-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        header.site-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        /* Book Card Components */
+        .book-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 32px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12);
+        }
+
+        @media(min-width: 768px) {
+            .book-card {
+                flex-direction: row;
+            }
+        }
+
+        .book-cover-container {
+            background: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .book-cover-container img {
+            width: 220px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15);
+        }
+
+        .book-details {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .book-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .book-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 24px;
+        }
+
+        /* Actions & Purchase Buttons */
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-amazon {
+            background-color: #232f3e;
+            color: #ffffff;
+        }
+        .btn-amazon:hover { background-color: #131921; }
+
+        .btn-etsy {
+            background-color: var(--accent-etsy);
+            color: #ffffff;
+        }
+        .btn-etsy:hover { opacity: 0.9; }
+
+        .btn-pay-now {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+        .btn-pay-now:hover { background-color: var(--primary-hover); }
+
+        .btn-download {
+            background-color: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+        }
+        .btn-download:hover { background-color: #d1fae5; }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modern Dark Header Banner -->
+    <div class="banner-wrapper">
+        <img src="watermarked_img_12811519866596126608.jpg" alt="PawsomeLearn Banner">
+    </div>
+
+    <div class="container">
+        <header class="site-header">
+            <h1>PawsomeLearn Publications</h1>
+            <p>Interactive Activity Guides, Educational Stories & Coloring Books</p>
+        </header>
+
+        <!-- BOOK 1 -->
+        <div class="book-card">
+            <div class="book-cover-container">
+                <img src="image_20261019_100941.jpg" alt="Pumpkins Ghosts and Paws Cover">
+            </div>
+            <div class="book-details">
+                <div>
+                    <span class="badge">Coloring Book</span>
+                    <h2 class="book-title">Pumpkins Ghosts and Paws</h2>
+                    <p class="book-desc">
+                        A cozy and spooky coloring adventure featuring playful puppies, cute pumpkin patches, and friendly Halloween themes. Perfect for creative early learners.
+                    </p>
+                </div>
+                
+                <div class="action-group">
+                    <!-- Amazon Link -->
+                    <a href="https://www.amazon.com" target="_blank" class="btn btn-amazon">
+                        🛒 Amazon
+                    </a>
+                    
+                    <!-- Etsy Link -->
+                    <a href="https://www.etsy.com" target="_blank" class="btn btn-etsy">
+                        🎨 Etsy Shop
+                    </a>
+
+                    <!-- Direct Instant Payment (Payhip/Stripe Overlay) -->
+                    <!-- Replace 'https://payhip.com/b/YOUR_PRODUCT_ID' with your real link -->
+                    <a href="https://payhip.com/b/YOUR_PRODUCT_ID" class="payhip-buy-button btn btn-pay-now" data-theme="none">
+                        💳 Pay & Download ($4.99)
+                    </a>
+
+                    <!-- Free Direct Download Sample -->
+                    <a href="image_20261019_100941.jpg" download="Pumpkins_Ghosts_Paws_Sample.jpg" class="btn btn-download">
+                        ⬇ Free Sample
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOOK 2 -->
+        <div class="book-card">
+            <div class="book-cover-container">
+                <img src="image_20261013_102433 (3).jpg" alt="My First English Adventure Cover">
+            </div>
+            <div class="book-details">
+                <div>
+                    <span class="badge">Activity & Learning</span>
+                    <h2 class="book-title">My First English Adventure</h2>
+                    <p class="book-desc">
+                        86 pages of interactive exercises, letter tracing, sound matching, and playful rhymes designed to build foundational English reading and writing skills for ages 3–6.
+                    </p>
+                </div>
+                
+                <div class="action-group">
+                    <!-- Amazon Link -->
+                    <a href="https://www.amazon.com" target="_blank" class="btn btn-amazon">
+                        🛒 Amazon
+                    </a>
+
+                    <!-- Etsy Link -->
+                    <a href="https://www.etsy.com" target="_blank" class="btn btn-etsy">
+                        🎨 Etsy Shop
+                    </a>
+
+                    <!-- Direct Instant Payment (Payhip/Stripe Overlay) -->
+                    <a href="https://payhip.com/b/YOUR_PRODUCT_ID_2" class="payhip-buy-button btn btn-pay-now" data-theme="none">
+                        💳 Pay & Download ($6.99)
+                    </a>
+
+                    <!-- Free Direct File Download Link -->
+                    <a href="image_20261013_102433 (3).jpg" download="English_Adventure_Preview.jpg" class="btn btn-download">
+                        ⬇ Free Sample
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 PawsomeLearn. Hosted for free on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
